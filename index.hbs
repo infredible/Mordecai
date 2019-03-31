@@ -1,0 +1,30 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template --}}
+<div class="container">
+	{{> "site-nav"}}
+
+	<div class="hero">
+		Fred is a product designer and creative technologist located in Oakland, CA
+	</div>
+
+	<div class="grid">
+		<div class="grid-sizer"></div>
+		<div class="gutter-sizer"></div>
+
+		{{!-- Posts within grid --}}
+
+		{{#foreach posts}}
+		<a class="grid-bg" href="{{url}}">
+		<div class="grid__item">
+			<img class="grid__item-img" src="{{img_url feature_image}}" alt="Some image" />
+			<div class="grid_item-title">
+				<h3>{{title}}</h3>
+			</div>
+		</div>
+		</a>
+
+		{{/foreach}}
+
+	</div>
+</div>

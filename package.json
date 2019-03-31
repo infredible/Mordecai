@@ -1,0 +1,20 @@
+{
+  "name": "Mordecai",
+  "version": "0.0.3",
+  "engines": {
+    "ghost": ">=2.0.0"
+  },
+  "author": {
+    "name": "fred zaw",
+    "email": "fred.zaw@gmail.com",
+    "url": "http://fredz.website"
+  },
+  "keywords": [
+      "ghost",
+      "theme",
+      "ghost-theme"
+  ],
+  "config": {
+    "posts_per_page": 25
+  }
+}

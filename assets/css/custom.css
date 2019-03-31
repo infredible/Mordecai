@@ -1,0 +1,800 @@
+ waz
+ :root {
+    /* Colours */
+    --blue: #3eb0ef;
+    --green: #a4d037;
+    --purple: #ad26b4;
+    --yellow: #FFE652;
+    --red: #f05230;
+    --darkgrey: #15171A;
+    --midgrey: #738a94;
+    --lightgrey: #c5d2d9;
+    --whitegrey: #e5eff5;
+    --pink: #fa3a57;
+    --brown: #a3821a;
+    --black: #000;
+    --white: #fff;
+}
+
+html {
+  font-family: 'Lato', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 4em;
+}
+
+a:hover {
+  transition:all 0.2s ease;
+}
+
+canvas {
+  width:100%;
+  height:100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -900;
+}
+
+/* Page Loader */
+.loading::before {
+	content: '';
+	position: fixed;
+	z-index: 100000;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--white);
+}
+
+.loading::after {
+	content: '';
+	position: absolute;
+	z-index: 100000;
+	top: 50%;
+  left: 50%;
+	width: 60px;
+	height: 60px;
+	/* margin: -30px 0 0 -30px; */
+	pointer-events: none;
+	border-radius: 50%;
+	background: var(--yellow);
+  animation: loaderAnim 12s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+@keyframes loaderAnim {
+    0% {
+      transform: rotateY(0deg);
+    }
+    50% {
+      transform: rotateY(900deg);
+      /* animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1); */
+    }
+    100% {
+      transform: rotateY(1800deg);
+    }
+}
+
+.container {
+  max-width: 1024px;
+  margin: auto;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 1.6em;
+  }
+}
+
+/* Site Navigation */
+
+.site-nav {
+    position: relative;
+    z-index: 300;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    overflow-y: hidden;
+    margin-left: -12px;
+}
+
+.site-nav-left {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+
+    -ms-overflow-scrolling: touch;
+}
+
+/* Site Nav Hack Explanation (above):
+
+What's happening above it .site-nav-left is set to overflow-x and allow sideways scrolling, so that when there isn't enough space for all nav items (either due to lots of nav items, or a small viewport), you can still scroll side-to-side to reach them.
+
+The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px of padding-bottom and a 40px fixed height parent (.site-nav) hides that entirely. Slightly hacky code. But nice clean end-result.
+
+*/
+
+.site-nav-logo {
+    flex-shrink: 0;
+    display: block;
+    margin-right: 24px;
+    padding: 11px 0;
+    color: #fff;
+    background-color: #000;
+    font-size: 1.7rem;
+    line-height: 1em;
+    font-weight: bold;
+    letter-spacing: -0.5px;
+}
+
+.site-nav-logo:hover {
+    text-decoration: none;
+}
+
+.site-nav-logo img {
+    display: block;
+    width: auto;
+    height: 21px;
+}
+
+.nav {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav li {
+    font-size: 1.4em;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.nav li a {
+    text-decoration: none;
+    display: block;
+    margin: 0;
+    padding: 10px 12px;
+    color: #000;
+}
+
+.nav li a:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+/* Hero */
+
+.hero {
+  font-size: 3.3em;
+  line-height: 1.6em;
+  margin: 4em 0;
+}
+
+/* Grid */
+
+.grid {
+  position: absolute;
+  max-width: 1200px;
+}
+
+.grid__item, .grid-sizer {
+	width: 48%;
+	position: relative;
+	padding: 0;
+  margin-bottom: 3.4em;
+}
+
+.gutter-sizer {
+  width: 4%;
+}
+
+.grid__item-img {
+	pointer-events: none;
+	position: relative;
+	width: 100%;
+	margin: 0 auto;
+	display: block;
+	outline: 1px solid transparent;
+}
+
+h3 {
+  font-weight: normal;
+  margin: 0.3em;
+  font-size: 1.4em;
+}
+
+.grid_item-title {
+  position: absolute;
+  background-color: var(--yellow);
+  color: #000;
+  left: 0;
+  top: 0;
+  margin: 1.4em 0 0 -1em;
+
+}
+
+@media (max-width: 1200px) {
+  .grid__item, .grid-sizer {
+  	width: 100%;
+  }
+
+  .gutter-sizer {
+    width: 0;
+  }
+}
+
+/* 7. Single Post
+/* ---------------------------------------------------------- */
+
+.post-container {
+  max-width: 1024px;
+  margin: auto;
+}
+
+@media (max-width: 1200px) {
+  .post-container {
+    padding: 1.6em;
+  }
+}
+
+.post-template .site-main,
+.page-template .site-main {
+    padding-bottom: 4vw;
+    background: #fff;
+}
+
+.post-full {
+    position: relative;
+    z-index: 50;
+}
+/* ^ Required to make .post-full-content:before/after z-index stacking work */
+
+.post-full-header {
+    margin: 0 auto;
+    padding: 3vw 3vw 3vw;
+    max-width: 1040px;
+    text-align: center;
+}
+@media (max-width: 500px) {
+    .post-full-header {
+        padding: 14vw 3vw 10vw;
+    }
+}
+
+.post-full-title {
+    margin: 0;
+}
+
+.post-full-image {
+    margin: 0 -10vw -165px;
+    height: 800px;
+    background: var(--lightgrey) center center;
+    background-size: cover;
+}
+
+@media (max-width: 1170px) {
+    .post-full-image {
+        margin: 0 -4vw -100px;
+        height: 600px;
+    }
+}
+
+@media (max-width: 800px) {
+    .post-full-image {
+        height: 400px;
+    }
+}
+
+.post-full-content {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 70px 100px 0;
+    min-height: 230px;
+    font-size: 1.2rem;
+    line-height: 1.6em;
+    background: var(--white);
+}
+
+@media (max-width: 1170px) {
+    .post-full-content {
+        padding: 5vw 7vw 0;
+    }
+}
+@media (max-width: 800px) {
+    .post-full-content {
+        font-size: 1rem;
+    }
+}
+
+.no-image .post-full-content {
+    padding-top: 0;
+}
+
+.no-image .post-full-content:before,
+.no-image .post-full-content:after {
+    display: none;
+}
+
+.post-full-content h1,
+.post-full-content h2,
+.post-full-content h3,
+.post-full-content h4,
+.post-full-content h5,
+.post-full-content h6,
+.post-full-content p,
+.post-full-content ul,
+.post-full-content ol,
+.post-full-content dl,
+.post-full-content pre,
+.post-full-content blockquote,
+.post-full-comments,
+.footnotes {
+    min-width: 100%;
+}
+
+.post-full-content li {
+    word-break: break-word;
+}
+
+.post-full-content li p {
+    margin: 0;
+}
+
+.post-full-content a {
+    color: var(--black);
+    word-break: break-word;
+}
+
+.post-full-content a:hover {
+    color: var(--white);
+    background-color: var(--black);
+    text-decoration: none;
+}
+
+.post-full-content strong,
+.post-full-content em {
+    color: color(var(--darkgrey) l(-5%));
+}
+
+.post-full-content small {
+    display: inline-block;
+    line-height: 1.6em;
+}
+
+.post-full-content li:first-child {
+    margin-top: 0;
+}
+
+.post-full-content img,
+.post-full-content video {
+    display: block;
+    margin: 1.5em auto;
+    max-width: 1040px;
+    height: auto;
+}
+@media (max-width: 1040px) {
+    .post-full-content img,
+    .post-full-content video {
+        width: 100%;
+    }
+}
+
+
+/* Full bleed images (#full)
+Super neat trick courtesy of @JoelDrapper
+
+Usage (In Ghost edtior):
+
+![img](/some/image.jpg#full)
+
+*/
+.post-full-content img[src$="#full"] {
+    max-width: none;
+    width: 100vw;
+}
+
+
+/* Image captions
+
+Usage (In Ghost editor):
+
+![img](/some/image.jpg)
+<small>Your image caption</small>
+
+*/
+.post-full-content img + br + small {
+    display: block;
+    margin-top: -3em;
+    margin-bottom: 1.5em;
+    text-align: center;
+}
+
+
+/* Override third party iframe styles */
+.post-full-content iframe {
+    margin: 0 auto !important;
+}
+
+.post-full-content blockquote {
+    margin: 0 0 1.5em;
+    padding: 0 1.5em;
+    border-left: var(--yellow) 3px solid;
+}
+
+.post-full-content blockquote p {
+    margin: 0 0 1em 0;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    font-style: italic;
+}
+
+.post-full-content blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+.post-full-content code {
+    padding: 0 5px 2px;
+    font-size: 0.8em;
+    line-height: 1em;
+    font-weight: 400!important;
+    background: var(--whitegrey);
+    border-radius: 3px;
+}
+
+.post-full-content pre {
+    overflow-x: auto;
+    margin: 1.5em 0 3em;
+    padding: 20px;
+    max-width: 100%;
+    border: color(var(--darkgrey) l(-10%)) 1px solid;
+    color: var(--whitegrey);
+    font-size: 1.4rem;
+    line-height: 1.5em;
+    background: color(var(--darkgrey) l(-3%));
+    border-radius: 5px;
+}
+
+.post-full-content pre code {
+    padding: 0;
+    font-size: inherit;
+    line-height: inherit;
+    background: transparent;
+}
+
+.post-full-content pre code * {
+    color: inherit;
+}
+
+.post-full-content .fluid-width-video-wrapper {
+    margin: 1.5em 0 3em;
+}
+
+.post-full-content hr {
+    margin: 4vw 0;
+}
+
+.post-full-content hr:after {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    display: block;
+    margin-left: -10px;
+    width: 1px;
+    height: 30px;
+    background: color(var(--lightgrey) l(+10%));
+    box-shadow: #fff 0 0 0 5px;
+    transform: rotate(45deg);
+}
+
+.post-full-content h1,
+.post-full-content h2,
+.post-full-content h3,
+.post-full-content h4,
+.post-full-content h5,
+.post-full-content h6 {
+    color: var(--black);
+}
+
+.post-full-content h1 {
+    margin: 0.5em 0 0.2em 0;
+    font-size: 3.8rem;
+    line-height: 1.2;
+    font-weight: normal;
+}
+@media (max-width: 500px) {
+    .post-full-content h1 {
+        font-size: 2.8rem;
+    }
+}
+
+.post-full-content h2 {
+    margin: 0.5em 0 0.2em 0;
+    font-size: 3rem;
+    font-weight: normal;
+    line-height: 3rem;
+}
+@media (max-width: 500px) {
+    .post-full-content h2 {
+        font-size: 1.6rem;
+    }
+}
+
+.post-full-content h3 {
+    margin: 0.5em 0 0.2em 0;
+    font-size: 1.8rem;
+    font-weight: normal;
+}
+@media (max-width: 500px) {
+    .post-full-content h3 {
+        font-size: 1.3rem;
+    }
+}
+
+.post-full-content h4 {
+    margin: 0.5em 0 0.2em 0;
+    font-size: 1.6rem;
+    font-weight: normal;
+}
+@media (max-width: 500px) {
+    .post-full-content h4 {
+        font-size: 1rem;
+    }
+}
+
+.post-full-content h5 {
+    display: block;
+    margin: 0.5em 0;
+    padding: 1em 0 1.5em;
+    border: 0;
+    color: var(--blue);
+    font-family: Georgia,serif;
+    font-size: 3.2rem;
+    line-height: 1.35em;
+    text-align: center;
+}
+@media (min-width: 1180px) {
+    .post-full-content h5 {
+        max-width: 1060px;
+        width: 100vw;
+    }
+}
+@media (max-width: 500px) {
+    .post-full-content h5 {
+        padding: 0 0 0.5em;
+        font-size: 2.2rem;
+    }
+}
+
+.post-full-content h6 {
+    margin: 0.5em 0 0.2em 0;
+    font-size: 2.3rem;
+    font-weight: 700;
+}
+@media (max-width: 500px) {
+    .post-full-content h6 {
+        font-size: 2rem;
+    }
+}
+
+.footnotes-sep {
+    margin-bottom: 30px;
+}
+
+.footnotes {
+    font-size: 1.5rem;
+}
+
+.footnotes p {
+    margin: 0;
+}
+
+.footnote-backref {
+    color: var(--blue) !important;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none !important;
+    box-shadow: none !important;
+}
+
+/* Some grouped styles for smaller viewports */
+@media (max-width: 500px) {
+    .post-full-meta {
+        font-size: 1.2rem;
+        line-height: 1.3em;
+    }
+    .post-full-title {
+        font-size: 2.9rem;
+    }
+    .post-full-image {
+        margin-bottom: 4vw;
+        height: 350px;
+    }
+    .post-full-content {
+        padding: 0;
+    }
+    .post-full-content:before,
+    .post-full-content:after {
+        display: none;
+    }
+}
+
+/* Tables */
+.post-full-content table {
+    display: inline-block;
+    overflow-x: auto;
+    margin: 0.5em 0 2.5em;
+    max-width: 100%;
+    width: auto;
+    border-spacing: 0;
+    border-collapse: collapse;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 1.6rem;
+    white-space: nowrap;
+    vertical-align: top;
+}
+
+.post-full-content table {
+    -webkit-overflow-scrolling: touch;
+    background: radial-gradient(ellipse at left, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 75%) 0 center, radial-gradient(ellipse at right, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 75%) 100% center;
+    background-attachment: scroll, scroll;
+    background-size: 10px 100%, 10px 100%;
+    background-repeat: no-repeat;
+}
+
+.post-full-content table td:first-child {
+    background-image: linear-gradient(to right, rgba(255,255,255, 1) 50%, rgba(255,255,255, 0) 100%);
+    background-size: 20px 100%;
+    background-repeat: no-repeat;
+}
+
+.post-full-content table td:last-child {
+    background-image: linear-gradient(to left, rgba(255,255,255, 1) 50%, rgba(255,255,255, 0) 100%);
+    background-position: 100% 0;
+    background-size: 20px 100%;
+    background-repeat: no-repeat;
+}
+
+.post-full-content table th {
+    color: var(--darkgrey);
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    text-align: left;
+    text-transform: uppercase;
+    background-color: color(var(--whitegrey) l(+4%));
+}
+
+.post-full-content table th,
+.post-full-content table td {
+    padding: 6px 12px;
+    border: color(var(--whitegrey) l(-1%) s(-5%)) 1px solid;
+}
+
+/* 7.6. Koenig Styles
+/* ---------------------------------------------------------- */
+
+.post-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 920px;
+}
+
+.post-template .post-content > p:first-child {
+    font-size: 1.25em;
+    line-height: 1.5em;
+}
+
+.post-full-content .kg-image {
+    max-width: 100%;
+}
+
+/* Preventing full-width image overlap with post image.  */
+.post-full-image + .post-full-content .kg-content *:first-child .kg-image {
+    width: 100%;
+}
+
+.post-full-content .kg-width-wide .kg-image {
+    max-width: 1040px;
+}
+
+.post-full-content .kg-width-full .kg-image {
+    max-width: 100vw;
+}
+
+.post-full-content figure {
+    margin: 1.5em 0 3em;
+}
+
+.post-full-content figure img {
+    margin: 0;
+}
+
+.post-full-content figcaption {
+    margin: 1.0em 0 0;
+    font-size: 80%;
+    line-height: 1.6em;
+    text-align: center;
+}
+
+.kg-width-full figcaption {
+    padding: 0 1.5em;
+}
+
+.kg-embed-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100%;
+}
+
+.kg-embed-card .fluid-width-video-wrapper {
+    margin: 0;
+}
+
+
+@media (max-width: 1040px) {
+    .post-full-content .kg-width-full .kg-image {
+        width: 100vw;
+    }
+}
+
+.kg-gallery-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1040px;
+    width: 100vw;
+}
+
+.kg-gallery-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.kg-gallery-image img {
+    display: block;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.kg-gallery-row:not(:first-of-type) {
+    margin: 0.75em 0 0 0;
+}
+
+.kg-gallery-image:not(:first-of-type) {
+    margin: 0 0 0 0.75em;
+}
+
+
+
+/* Footer/Endmark
+/* ---------------------------------------------------------- */
+
+.endmark {
+  margin: 4em auto;
+  text-align: center;
+}
+
+.dot {
+  height: 25px;
+  width: 25px;
+  background-color: var(--black);
+  border-radius: 50%;
+  display: inline-block;
+}
